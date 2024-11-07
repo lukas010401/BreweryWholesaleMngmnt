@@ -46,7 +46,6 @@ namespace BreweryWholesale.Tests
             Assert.AreEqual(2, returnBeers.Count);
         }
 
-        // there is no beer
         [Test]
         public async Task GetBeersByBrewery_ReturnsNotFoundResult_WhenNoBeersExist()
         {

@@ -31,10 +31,17 @@ namespace BreweryWholesaleMngmnt.Controllers
 
         // A brewer can add new beer
         [HttpPost]
-        public async Task<ActionResult<Beer>> AddBeer(Beer beer)
+        public async Task<ActionResult<Beer>> AddBeer([FromBody] Beer beer)
         {
-            var addedBeer = await _beerService.AddBeerAsync(beer);
-            return CreatedAtAction(nameof(AddBeer), new { id = addedBeer.BeerID }, addedBeer);
+            try
+            {
+                var addedBeer = await _beerService.AddBeerAsync(beer);
+                return CreatedAtAction(nameof(AddBeer), new { id = addedBeer.BeerID }, addedBeer);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
 
         // A brewer can delete a beer
