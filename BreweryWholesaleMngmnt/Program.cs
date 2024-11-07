@@ -19,6 +19,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBeerService, BeerService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
+builder.Services.AddScoped<IWholesalerService, WholesalerService>();
 
 var app = builder.Build();
 
