@@ -1,5 +1,6 @@
 ﻿using BreweryWholesaleMngmnt.Data;
 using BreweryWholesaleMngmnt.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BreweryWholesaleMngmnt.Services
 {
@@ -34,8 +35,32 @@ namespace BreweryWholesaleMngmnt.Services
             };
 
             _context.Sales.Add(sale);
+
+            await UpdateWholesalerStockAsync(wholesalerId, beerId, quantity);
+
             await _context.SaveChangesAsync();
             return sale;
+        }
+
+        private async Task UpdateWholesalerStockAsync(int wholesalerId, int beerId, int quantity)
+        {
+            var stockItem = await _context.WholesalerStocks
+                                           .FirstOrDefaultAsync(ws => ws.WholesalerID == wholesalerId && ws.BeerID == beerId);
+
+            if (stockItem == null)
+            {
+                stockItem = new WholesalerStock
+                {
+                    WholesalerID = wholesalerId,
+                    BeerID = beerId,
+                    Quantity = quantity
+                };
+                _context.WholesalerStocks.Add(stockItem);
+            }
+            else
+            {
+                stockItem.Quantity += quantity;
+            }
         }
     }
 }
