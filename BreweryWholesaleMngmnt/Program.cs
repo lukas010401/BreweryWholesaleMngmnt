@@ -20,6 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IBeerService, BeerService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
 builder.Services.AddScoped<IWholesalerService, WholesalerService>();
+builder.Services.AddScoped<IQuoteService, QuoteService>();
 
 var app = builder.Build();
 

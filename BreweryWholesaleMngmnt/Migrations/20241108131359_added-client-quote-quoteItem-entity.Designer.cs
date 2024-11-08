@@ -4,6 +4,7 @@ using BreweryWholesaleMngmnt.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BreweryWholesaleMngmnt.Migrations
 {
     [DbContext(typeof(BreweryContext))]
-    partial class BreweryContextModelSnapshot : ModelSnapshot
+    [Migration("20241108131359_added-client-quote-quoteItem-entity")]
+    partial class addedclientquotequoteItementity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
